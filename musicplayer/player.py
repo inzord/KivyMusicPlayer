@@ -4,12 +4,11 @@ from kivy.clock import Clock
 from kivy.core.window import Window
 from kivy.lang import Builder
 from kivy.core.audio import SoundLoader
-from kivy.properties import ObjectProperty
 
 from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
 
-from dir.path_dir import Path
+from musicplayer.dir.path_dir import Path
 
 Window.size = (600, 600)
 Builder.load_file('box.kv')

@@ -1,6 +1,6 @@
 import os
 
-from params.params import Params
+from musicplayer.params.params import Params
 
 
 class Path:
