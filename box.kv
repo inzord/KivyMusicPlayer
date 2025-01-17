@@ -1,0 +1,79 @@
+<CallScreen>
+
+    #FitImage:
+        #id: title_image
+        #y: root.height - self.height
+
+    BoxLayout:
+        orientation: "vertical"
+        canvas:
+            Color:
+                rgb: 0.15, 0.15, 0.15
+            Rectangle:
+                pos: root.pos
+                size: root.size
+                source:"data/logo/1.jpg"
+
+        FileChooserListView:
+            id: filechooser
+            show_hidden: True
+            dirselect: True
+            path: root.get_dir_path()
+            on_selection: root.load(filechooser.path, filechooser.selection)
+
+        Label:
+            text: ''
+            size_hint_y: 0.15
+
+            MDFloatLayout:
+
+                MDIconButton:
+                    pos_hint : {'center_x': 4.55, 'center_y': 0.25}
+                    icon: "skip-previous"
+                    theme_icon_color: "Custom"
+                    icon_color: "white"
+                    haling: "center"
+                    on_press: root.skip_previous()
+
+                MDIconButton:
+                    pos_hint : {'center_x': 4.95, 'center_y': 0.25}
+                    icon: "play"
+                    theme_icon_color: "Custom"
+                    icon_color: "white"
+                    haling: "center"
+                    on_press: root.play_music()
+
+                MDIconButton:
+                    pos_hint : {'center_x': 5.35, 'center_y': 0.25}
+                    icon: "stop"
+                    theme_icon_color: "Custom"
+                    icon_color: "white"
+                    haling: "center"
+                    on_press: root.stop_music()
+
+                MDIconButton:
+                    pos_hint : {'center_x': 5.75, 'center_y': 0.25}
+                    icon: "skip-next"
+                    theme_icon_color: "Custom"
+                    icon_color: "white"
+                    haling: "center"
+                    on_press: root.skip_next()
+                    #on_release: app.button_skip_next_pressed()
+
+                BoxLayout:
+                    orientation: "vertical"
+
+                    MDSlider:
+                        id: seek_slider
+                        min: 0
+                        max: 100
+                        #max: root.get_sound_duration()
+                        value: 0
+                        on_value: root.seek_forward(seek_slider.value)
+
+                    MDSlider:
+                        id: volume_slider
+                        min: 0
+                        max: 1
+                        value: 1
+                        on_value: root.set_volume(volume_slider.value)
